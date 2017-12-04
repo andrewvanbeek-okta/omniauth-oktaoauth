@@ -71,7 +71,7 @@ module OmniAuth
       end
 
       def callback_url
-        options[:redirect_uri] || (full_host + script_name + callback_path)
+        "https://8080-dot-2973038-dot-devshell.appspot.com/users/auth/okta/callback"
       end
 
       def validated_token(token)
