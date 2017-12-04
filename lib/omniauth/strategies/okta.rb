@@ -6,7 +6,7 @@ module OmniAuth
   module Strategies
     class Okta < OmniAuth::Strategies::OAuth2
 
-      ORG           = ENV['OKTA_ORG']    || 'vanbeektech'
+      ORG           = ENV['OKTA_ORG']    || 'your-org'
       DOMAIN        = ENV['OKTA_DOMAIN'] || 'okta'
       BASE_URL      = "https://#{ORG}.#{DOMAIN}.com"
       DEFAULT_SCOPE = %[openid profile email].freeze
@@ -71,7 +71,7 @@ module OmniAuth
       end
 
       def callback_url
-        "https://8080-dot-2973038-dot-devshell.appspot.com/users/auth/okta/callback"
+        options[:redirect_uri] || (full_host + script_name + callback_path)
       end
 
       def validated_token(token)
