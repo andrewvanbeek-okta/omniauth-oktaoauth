@@ -18,7 +18,7 @@ module OmniAuth
 
       option :client_options, {
         site:          BASE_URL,
-        authorize_url: "#{BASE_URL}/oauth2/v1/authorize&idp=0oa38fseusRyzxVKf1t7",
+        authorize_url: "#{BASE_URL}/oauth2/v1/authorize",
         token_url:     "#{BASE_URL}/oauth2/v1/token",
         response_type: 'id_token'
       }
