@@ -71,7 +71,7 @@ module OmniAuth
       end
 
       def callback_url
-        "https://8080-dot-2973038-dot-devshell.appspot.com/users/auth/okta/callback"
+        "http://localhost:3000/users/auth/okta/callback"
       end
 
       def validated_token(token)
