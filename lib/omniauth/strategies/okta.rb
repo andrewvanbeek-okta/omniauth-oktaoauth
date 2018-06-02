@@ -18,8 +18,8 @@ module OmniAuth
 
       option :client_options, {
         site:          BASE_URL,
-        authorize_url: options[:auth_server_url] + "/oauth2/v1/authorize",
-        token_url:     options[:auth_server_url] + "/oauth2/v1/token",
+        authorize_url: option[:auth_server_url] + "/oauth2/v1/authorize",
+        token_url:     option[:auth_server_url] + "/oauth2/v1/token",
         response_type: 'id_token'
       }
 
@@ -71,7 +71,7 @@ module OmniAuth
       end
 
       def callback_url
-        options[:redirect_uri] || (full_host + script_name + callback_path)
+        option[:redirect_uri] || (full_host + script_name + callback_path)
       end
 
       def validated_token(token)
