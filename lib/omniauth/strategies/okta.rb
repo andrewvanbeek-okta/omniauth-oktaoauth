@@ -15,11 +15,13 @@ module OmniAuth
 
       option :skip_jwt, false
       option :jwt_leeway, 60
+      
+      option :okta_auth_server, ""
 
       option :client_options, {
         site:          BASE_URL,
-        authorize_url: client_options[:site] + "/oauth2/v1/authorize",
-        token_url:     client_options[:site] + "/oauth2/v1/token",
+        authorize_url: site + "/oauth2/v1/authorize",
+        token_url:     site + "/oauth2/v1/token",
         response_type: 'id_token'
       }
 
