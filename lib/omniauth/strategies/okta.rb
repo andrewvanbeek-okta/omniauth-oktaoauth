@@ -71,7 +71,7 @@ module OmniAuth
       end
 
       def callback_url
-        "http://localhost:3000/users/auth/okta/callback"
+        options[:redirect_uri] || (full_host + script_name + callback_path)
       end
 
       def validated_token(token)
