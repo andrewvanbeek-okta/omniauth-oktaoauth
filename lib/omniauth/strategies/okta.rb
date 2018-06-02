@@ -18,8 +18,8 @@ module OmniAuth
 
       option :client_options, {
         site:          BASE_URL,
-        authorize_url: "#{BASE_URL}/oauth2/v1/authorize",
-        token_url:     "#{BASE_URL}/oauth2/v1/token",
+        authorize_url: options[:auth_server_url] + "/oauth2/v1/authorize",
+        token_url:     options[:auth_server_url] + "/oauth2/v1/token",
         response_type: 'id_token'
       }
 
