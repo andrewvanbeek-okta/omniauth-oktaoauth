@@ -8,20 +8,18 @@ module OmniAuth
 
       ORG           = ENV['OKTA_ORG']    || 'auth'
       DOMAIN        = ENV['OKTA_DOMAIN'] || 'vanbeeklabs'
-      BASE_URL      = "https://#{ORG}.#{DOMAIN}.com"
+      BASE_URL    = "https://#{ORG}.#{DOMAIN}.com"
       DEFAULT_SCOPE = %[openid profile email].freeze
 
       option :name, 'okta'
 
       option :skip_jwt, false
       option :jwt_leeway, 60
-      
-      option :okta_auth_server, ""
-
+    
       option :client_options, {
         site:          BASE_URL,
-        authorize_url: site + "/oauth2/v1/authorize",
-        token_url:     site + "/oauth2/v1/token",
+        authorize_url: BASE_URL + "/oauth2/v1/authorize",
+        token_url:     BASE_URL + "/oauth2/v1/token",
         response_type: 'id_token'
       }
 
