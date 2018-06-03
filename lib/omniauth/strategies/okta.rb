@@ -6,14 +6,14 @@ module OmniAuth
   module Strategies
     class Okta < OmniAuth::Strategies::OAuth2
 
-      
+
       DEFAULT_SCOPE = %[openid profile email].freeze
 
-      option :name, 'okta'
+      option :name, 'oktaauth'
 
       option :skip_jwt, false
       option :jwt_leeway, 60
-    
+
       option :client_options, {
         site:          "configure this part ins client options with devise",
         authorize_url: "configure this part in client options with devise",
@@ -37,7 +37,7 @@ module OmniAuth
 
       extra do
         hash = {}
-        
+
         hash[:raw_info] = raw_info unless skip_info?
         hash[:id_token] = access_token.token
         if !options[:skip_jwt] && !access_token.token.nil?
@@ -61,7 +61,7 @@ module OmniAuth
         else
           options[:auth_server_id] = ""
         end
-        
+
         @_raw_info ||= access_token.get('/oauth2/' + options[:auth_server_id] + 'v1/userinfo').parsed || {}
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error

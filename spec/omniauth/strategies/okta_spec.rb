@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe OmniAuth::Strategies::Okta do
+describe OmniAuth::Strategies::Oktaoauth do
 
   subject { described_class.new({}) }
 
