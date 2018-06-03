@@ -43,9 +43,6 @@ module OmniAuth
         if !options[:skip_jwt] && !access_token.token.nil?
           hash[:id_info] = validated_token(access_token.token)
         end
-        print(hash)
-         print(hash)
-         print("efsiiosehfiohseiohn")
         hash
       end
 
