@@ -6,9 +6,7 @@ module OmniAuth
   module Strategies
     class Okta < OmniAuth::Strategies::OAuth2
 
-      ORG           = ENV['OKTA_ORG']    || 'auth'
-      DOMAIN        = ENV['OKTA_DOMAIN'] || 'vanbeeklabs.com/oauth2/aus73ogndq7vL5lYJ1t7'
-      BASE_URL    = "https://#{ORG}.#{DOMAIN}"
+      
       DEFAULT_SCOPE = %[openid profile email].freeze
 
       option :name, 'okta'
@@ -18,8 +16,8 @@ module OmniAuth
     
       option :client_options, {
         site:          "configure this part ins client options with devise",
-        authorize_url: "configure this part in client options with devise" + "/oauth2/v1/authorize",
-        token_url:     "configure this part in client options with devise" + "/oauth2/v1/token",
+        authorize_url: "configure this part in client options with devise",
+        token_url:     "configure this part in client options with devise",
         response_type: 'id_token'
       }
 
@@ -64,10 +62,13 @@ module OmniAuth
       end
 
       def raw_info
-        print(access_token)
-         print(access_token)
-         print("efsiiosehfiohseiohn")
-        @_raw_info ||= access_token.get('/oauth2/' + options[:auth_server_id] + '/v1/userinfo').parsed || {}
+        if options[:auth_server_id]
+          options[:auth_server_id] = options[:auth_server_id] + "/"
+        else
+          options[:auth_server_id] = ""
+        end
+        
+        @_raw_info ||= access_token.get('/oauth2/' + options[:auth_server_id] + 'v1/userinfo').parsed || {}
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
