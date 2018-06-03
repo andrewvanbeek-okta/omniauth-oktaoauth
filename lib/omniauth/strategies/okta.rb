@@ -39,11 +39,13 @@ module OmniAuth
 
       extra do
         hash = {}
+        
         hash[:raw_info] = raw_info unless skip_info?
         hash[:id_token] = access_token.token
         if !options[:skip_jwt] && !access_token.token.nil?
           hash[:id_info] = validated_token(access_token.token)
         end
+        print(hash)
         hash
       end
 
