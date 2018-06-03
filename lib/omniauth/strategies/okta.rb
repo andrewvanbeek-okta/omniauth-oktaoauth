@@ -17,9 +17,9 @@ module OmniAuth
       option :jwt_leeway, 60
     
       option :client_options, {
-        site:          BASE_URL,
-        authorize_url: BASE_URL + "/oauth2/v1/authorize",
-        token_url:     BASE_URL + "/oauth2/v1/token",
+        site:          "configure this part ins client options with devise",
+        authorize_url: "configure this part in client options with devise" + "/oauth2/v1/authorize",
+        token_url:     "configure this part in client options with devise" + "/oauth2/v1/token",
         response_type: 'id_token'
       }
 
@@ -67,7 +67,7 @@ module OmniAuth
         print(access_token)
          print(access_token)
          print("efsiiosehfiohseiohn")
-        @_raw_info ||= access_token.get('/oauth2/aus73ogndq7vL5lYJ1t7/v1/userinfo').parsed || {}
+        @_raw_info ||= access_token.get('/oauth2/' + options[:auth_server_id] + '/v1/userinfo').parsed || {}
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
@@ -89,9 +89,9 @@ module OmniAuth
                    nil,
                    false,
                    verify_iss:        true,
-                   iss:               BASE_URL,
+                   iss:               options[:issuer],
                    verify_aud:        true,
-                   aud:               BASE_URL,
+                   aud:               options[:audience],
                    verify_sub:        true,
                    verify_expiration: true,
                    verify_not_before: true,
