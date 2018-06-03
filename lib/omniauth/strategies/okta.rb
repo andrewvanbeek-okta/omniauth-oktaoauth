@@ -67,7 +67,7 @@ module OmniAuth
         print(access_token)
          print(access_token)
          print("efsiiosehfiohseiohn")
-        @_raw_info ||= access_token.get('/oauth2/v1/userinfo').parsed || {}
+        @_raw_info ||= access_token.get('/oauth2/aus73ogndq7vL5lYJ1t7/v1/userinfo').parsed || {}
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
