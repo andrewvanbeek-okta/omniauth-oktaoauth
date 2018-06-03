@@ -1,6 +1,6 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-require "omniauth-okta/version"
+require "omniauth-oktaoauth/version"
 
 Gem::Specification.new do |s|
   s.name          = "omniauth-oktaoauth"
