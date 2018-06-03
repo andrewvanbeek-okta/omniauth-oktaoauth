@@ -9,7 +9,7 @@ module OmniAuth
 
       DEFAULT_SCOPE = %[openid profile email].freeze
 
-      option :name, 'oktaauth'
+      option :name, 'oktaoauth'
 
       option :skip_jwt, false
       option :jwt_leeway, 60
