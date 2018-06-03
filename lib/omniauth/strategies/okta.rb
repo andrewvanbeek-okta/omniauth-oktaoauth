@@ -31,7 +31,8 @@ module OmniAuth
           email:      raw_info['email'],
           first_name: raw_info['given_name'],
           last_name:  raw_info['family_name'],
-          image:      raw_info['picture']
+          image:      raw_info['picture'],
+          tokenInfo: id_info['scp']
         }
       end
 
