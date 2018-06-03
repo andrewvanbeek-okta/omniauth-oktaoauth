@@ -3,7 +3,7 @@
 
 Continues the great work done by Danandrews at the original repo: https://github.com/dandrews/omniauth-okta.
 
-This newer version now supports options for Okta's Api Access Management and Custom Oauth Tokens and Urls.  Important to note that is this not an officially released tool and maybe subject to change.
+This newer version now supports options for Okta's Api Access Management and Custom Oauth Tokens and Urls.  Important to note that this is not as of yet a fully officially released tool and maybe subject to change but feel free to use or improve on.
 
 
 
