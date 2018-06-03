@@ -3,7 +3,7 @@
 require 'rspec'
 require 'rack/test'
 require 'omniauth'
-require 'omniauth-okta'
+require 'omniauth-oktaoauth'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

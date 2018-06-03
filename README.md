@@ -1,7 +1,7 @@
-# Omniauth-OktaOauth OmniAuth Okta OAuth2 Strategy
+# omniauth-oktaoauth OmniAuth Okta OAuth2 Strategy
 
 
-Continues the great work done by Danandrews at the original repo: https://github.com/dandrews/omniauth-okta.
+Continues the great work done by Danandrews at the original repo: https://github.com/dandrews/omniauth-oktaoauth.
 
 This newer version now supports options for Okta's Api Access Management and Custom Oauth Tokens and Urls.  Important to note that is this not an officially released tool and maybe subject to change.
 

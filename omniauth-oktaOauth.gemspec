@@ -3,10 +3,10 @@ $:.push File.expand_path("../lib", __FILE__)
 require "omniauth-okta/version"
 
 Gem::Specification.new do |s|
-  s.name          = "omniauth-okta"
+  s.name          = "omniauth-oktaoauth"
   s.version       = OmniAuth::Oktaoauth::VERSION
   s.authors       = ["Dan Andrews", "Andrew Van Beek"]
-  s.email         = ["daniel.raymond.andrews@gmail.com", "andrew.vanbeek@okta.com"]
+  s.email         = ["andrew.vanbeek@okta.com"]
   s.homepage      = ""
   s.summary       = %q{OmniAuth OAuth2 strategy for Okta}
   s.description   = %q{OmniAuth OAuth2 strategy for Okta}
