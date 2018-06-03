@@ -63,7 +63,7 @@ or add options like the following:
                 :redirect_uri => ENV["OKTA_REDIRECT_URI"],
                 :auth_server_id => ENV['OKTA_AUTH_SERVER_ID'],
                 :issuer => ENV['OKTA_ISSUER'],
-                :strategy_class => OmniAuth::Strategies::Okta)
+                :strategy_class => OmniAuth::Strategies::Oktaoauth)
 ```
 
 Then add the following to 'config/routes.rb' so the callback routes are defined.
