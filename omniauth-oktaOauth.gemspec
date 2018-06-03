@@ -4,12 +4,12 @@ require "omniauth-okta/version"
 
 Gem::Specification.new do |s|
   s.name          = "omniauth-okta"
-  s.version       = OmniAuth::Okta::VERSION
-  s.authors       = ["Dan Andrews"]
-  s.email         = ["daniel.raymond.andrews@gmail.com"]
+  s.version       = OmniAuth::Oktaoauth::VERSION
+  s.authors       = ["Dan Andrews", "Andrew Van Beek"]
+  s.email         = ["daniel.raymond.andrews@gmail.com", "andrew.vanbeek@okta.com"]
   s.homepage      = ""
-  s.summary       = %q{Unofficial OmniAuth OAuth2 strategy for Okta}
-  s.description   = %q{Unofficial OmniAuth OAuth2 strategy for Okta}
+  s.summary       = %q{OmniAuth OAuth2 strategy for Okta}
+  s.description   = %q{OmniAuth OAuth2 strategy for Okta}
   s.license       = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

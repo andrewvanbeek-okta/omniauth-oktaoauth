@@ -1,15 +1,20 @@
-# OmniAuth Okta OAuth2 Strategy
+# Omniauth-OktaOauth OmniAuth Okta OAuth2 Strategy
 
-Strategy to authenticate with Okta via OAuth2 in OmniAuth.
 
-This strategy uses Okta's OpenID Connect API with OAuth2. See their [developer docs](https://developer.okta.com/docs/api/resources/oidc.html) for more details.
+Continues the great work done by Danandrews at the original repo: https://github.com/dandrews/omniauth-okta.
+
+This newer version now supports options for Okta's Api Access Management and Custom Oauth Tokens and Urls.  Important to note that is this not an officially released tool and maybe subject to change.
+
+
+
+This strategy can both use Okta's OIDC and Api Access Management Flows. See [developer docs](https://developer.okta.com/docs/api/resources/oidc.html) for more details.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'omniauth-okta'
+gem 'omniauth-oktaoauth'
 ```
 
 And then execute:
@@ -19,7 +24,7 @@ $ bundle install
 
 Or install it yourself as:
 ```bash
-$ gem install omniauth-okta
+$ gem install omniauth-oktaoauth
 ```
 
 ### Environment Variables
@@ -27,39 +32,38 @@ $ gem install omniauth-okta
 ```bash
 OKTA_CLIENT_ID     # required
 OKTA_CLIENT_SECRET # required
-OKTA_ORG           # required - defaults to 'your-org' if unset
-OKTA_DOMAIN        # optional - defaults to 'okta.com' if unset
-```
+# optional - defaults to 'okta.com' if unset
+required client options are
+site: "your okta org or full issuer with okta"
+authorize_url: "your authorization url"
+token_url: "your token url"
 
-### OmniAuth
+These end points for custom auth servers can be found at {your okta org or custom url}/oauth2/{your server id}/.well-known/oauth-authorization-server
 
-Here's an example for adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
+For Oidc only it is {your okta org or custom url}/.well-known/openid-configuration
 
-```ruby
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :okta, ENV['OKTA_CLIENT_ID'], ENV['OKTA_CLIENT_SECRET']
-end
-```
+
 
 ### Devise
 
-First define your application id and secret in `config/initializers/devise.rb`.
+Here is an example with Devise in `config/initializers/devise.rb`.
 
 Configuration options can be passed as the last parameter here as key/value pairs.
 
-```ruby
-config.omniauth :okta, ENV['OKTA_CLIENT_ID'], ENV['OKTA_CLIENT_SECRET'], {}
-```
 or add options like the following:
 
 ```ruby
-  require 'omniauth-okta'
-  config.omniauth(:okta,
-                  ENV['OKTA_CLIENT_ID'],
-                  ENV['OKTA_CLIENT_SECRET'],
-                  :scope => 'openid profile email',
-                  :fields => ['profile', 'email'],
-                  :strategy_class => OmniAuth::Strategies::Okta)
+  require 'omniauth-oktaoauth'
+  config.omniauth(:oktaoauth,
+                ENV['OKTA_CLIENT_ID'],
+                ENV['OKTA_CLIENT_SECRET'],
+                :scope => 'openid profile email',
+                :fields => ['profile', 'email'],
+                :client_options => {site: ENV['OKTA_ISSUER'], authorize_url: ENV['OKTA_ISSUER'] + "/v1/authorize", token_url: ENV['OKTA_ISSUER'] + "/v1/token"},
+                :redirect_uri => ENV["OKTA_REDIRECT_URI"],
+                :auth_server_id => ENV['OKTA_AUTH_SERVER_ID'],
+                :issuer => ENV['OKTA_ISSUER'],
+                :strategy_class => OmniAuth::Strategies::Okta)
 ```
 
 Then add the following to 'config/routes.rb' so the callback routes are defined.
@@ -71,7 +75,7 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 Make sure your model is omniauthable. Generally this is "/app/models/user.rb"
 
 ```ruby
-devise :omniauthable, omniauth_providers: [:okta]
+devise :omniauthable, omniauth_providers: [:oktaoauth]
 ```
 
 ## Auth Hash
@@ -126,14 +130,6 @@ Here's an example of an authentication hash available in the callback by accessi
 }
 ```
 
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

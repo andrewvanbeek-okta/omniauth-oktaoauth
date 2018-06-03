@@ -6,7 +6,7 @@
 
 require 'bundler/setup'
 require 'sinatra/base'
-require 'omniauth-okta'
+require 'omniauth-oktaoauth'
 
 class OktaExample < Sinatra::Base
   use Rack::Session::Cookie, :secret => 'sUp3rs3cr3t'
