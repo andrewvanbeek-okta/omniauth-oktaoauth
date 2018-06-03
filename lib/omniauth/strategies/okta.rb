@@ -7,7 +7,7 @@ module OmniAuth
     class Okta < OmniAuth::Strategies::OAuth2
 
       ORG           = ENV['OKTA_ORG']    || 'auth'
-      DOMAIN        = ENV['OKTA_DOMAIN'] || 'vanbeeklabs'
+      DOMAIN        = ENV['OKTA_DOMAIN'] || 'vanbeeklabs.com/oauth2/aus73ogndq7vL5lYJ1t7'
       BASE_URL    = "https://#{ORG}.#{DOMAIN}.com"
       DEFAULT_SCOPE = %[openid profile email].freeze
 
