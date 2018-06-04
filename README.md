@@ -6,6 +6,8 @@ Continues the great work done by Danandrews at the original repo: https://github
 This newer version now supports options for Okta's Api Access Management and Custom Oauth Tokens and Urls.  Important to note that this is not as of yet a fully officially released tool and maybe subject to change but feel free to use or improve on.
 
 
+To see it in action check out the example app: https://github.com/andrewvanbeek-okta/oktaOmniauthDeviseSample
+
 
 This strategy can both use Okta's OIDC and Api Access Management Flows. See [developer docs](https://developer.okta.com/docs/api/resources/oidc.html) for more details.
 
