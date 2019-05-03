@@ -1,15 +1,14 @@
 # omniauth-oktaoauth OmniAuth Okta OAuth2 Strategy
 
+This gem continues the great work done by Danandrews in [`omniauth-okta`](https://github.com/dandrews/omniauth-okta).
 
-Continues the great work done by Danandrews at the original repo: https://github.com/dandrews/omniauth-okta.
+This newer version now supports options for Okta's API Access Management and Custom Oauth Tokens and URLs. 
 
-This newer version now supports options for Okta's Api Access Management and Custom Oauth Tokens and Urls.  Important to note that this is not as of yet a fully officially released tool and maybe subject to change but feel free to use or improve on.
-
+_Note: This is not as of yet a fully officially released tool and maybe subject to changes. Feel free to use or improve on it!_
 
 To see it in action check out the example app: https://github.com/andrewvanbeek-okta/oktaOmniauthDeviseSample
 
-
-This strategy can both use Okta's OIDC and Api Access Management Flows. See [developer docs](https://developer.okta.com/docs/api/resources/oidc.html) for more details.
+This strategy can both use Okta's OpenID Connect and API Access Management Flows. See [developer docs](https://developer.okta.com/docs/api/resources/oidc.html) for more details.
 
 ## Installation
 
@@ -29,52 +28,39 @@ Or install it yourself as:
 $ gem install omniauth-oktaoauth
 ```
 
-### Environment Variables
-
-```bash
-OKTA_CLIENT_ID     # required
-OKTA_CLIENT_SECRET # required
-# optional - defaults to 'okta.com' if unset
-required client options are
-site: "your okta org or full issuer with okta"
-authorize_url: "your authorization url"
-token_url: "your token url"
-
-These end points for custom auth servers can be found at {your okta org or custom url}/oauth2/{your server id}/.well-known/oauth-authorization-server
-
-For Oidc only it is {your okta org or custom url}/.well-known/openid-configuration
-
-
-
 ### Devise
 
-Here is an example with Devise in `config/initializers/devise.rb`.
+For OpenID Connect only, it is `{your okta org or custom url}/.well-known/openid-configuration`.
 
-Configuration options can be passed as the last parameter here as key/value pairs.
+The endpoints for custom auth servers can be found at `{your okta org or custom url}/oauth2/{your server id}/.well-known/oauth-authorization-server`. 
 
-or add options like the following:
+> :bulb: **Protip** Save yourself time and look at these URLS. They return a JSON blob that will give you the info you need to fill in the devise settings.
+
+
+Here is an example with Devise in `config/initializers/devise.rb`:
 
 ```ruby
-  require 'omniauth-oktaoauth'
-  config.omniauth(:oktaoauth,
-                ENV['OKTA_CLIENT_ID'],
-                ENV['OKTA_CLIENT_SECRET'],
-                :scope => 'openid profile email',
-                :fields => ['profile', 'email'],
-                :client_options => {site: ENV['OKTA_ISSUER'], authorize_url: ENV['OKTA_ISSUER'] + "/v1/authorize", token_url: ENV['OKTA_ISSUER'] + "/v1/token"},
-                :redirect_uri => ENV["OKTA_REDIRECT_URI"],
-                :auth_server_id => ENV['OKTA_AUTH_SERVER_ID'],
-                :issuer => ENV['OKTA_ISSUER'],
-                :strategy_class => OmniAuth::Strategies::Oktaoauth)
+config.omniauth(:oktaoauth, ENV['OKTA_CLIENT_ID'], ENV['OKTA_CLIENT_SECRET'],
+  scope: 'openid profile email',
+  fields: ['profile', 'email'],
+  client_options: {
+    site: ENV['OKTA_ISSUER'],
+    authorize_url: ENV['OKTA_ISSUER'] + "/v1/authorize",
+    token_url: ENV['OKTA_ISSUER'] + "/v1/token"
+   },
+  redirect_uri: ENV["OKTA_REDIRECT_URI"],
+  auth_server_id: ENV['OKTA_AUTH_SERVER_ID'],
+  issuer: ENV['OKTA_ISSUER'],
+  strategy_class: OmniAuth::Strategies::Oktaoauth)
 ```
 
-Then add the following to 'config/routes.rb' so the callback routes are defined.
+Add the following to 'config/routes.rb' to define the callback routes:
 
 ```ruby
 devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 ```
 
-Make sure your model is omniauthable. Generally this is "/app/models/user.rb"
+Make sure your model is omniauthable. Generally this is done in "/app/models/user.rb":
 
 ```ruby
 devise :omniauthable, omniauth_providers: [:oktaoauth]
