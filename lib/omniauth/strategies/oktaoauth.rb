@@ -15,7 +15,7 @@ module OmniAuth
       option :jwt_leeway, 60
 
       option :client_options, {
-        site:          "configure this part ins client options with devise",
+        site:          "configure this part in client options with devise",
         authorize_url: "configure this part in client options with devise",
         token_url:     "configure this part in client options with devise",
         response_type: 'id_token'
