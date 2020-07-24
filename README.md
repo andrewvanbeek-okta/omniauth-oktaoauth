@@ -72,7 +72,7 @@ Here's an example of an authentication hash available in the callback by accessi
 
 ```ruby
 {
-  "provider" => "okta",
+  "provider" => "oktaoauth",
   "uid" => "0000000000000001",
   "info" => {
     "name" => "John Smith",
