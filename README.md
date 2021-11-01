@@ -15,17 +15,17 @@ This strategy can both use Okta's OpenID Connect and API Access Management Flows
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'omniauth-oktaoauth'
+gem 'omniauth-oktaoauth', '~> 0.1.7'
 ```
 
 And then execute:
 ```bash
-$ bundle install
+bundle install
 ```
 
 Or install it yourself as:
 ```bash
-$ gem install omniauth-oktaoauth
+gem install omniauth-oktaoauth
 ```
 
 ### Devise
