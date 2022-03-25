@@ -1,6 +1,6 @@
 # omniauth-oktaoauth OmniAuth Okta OAuth2 Strategy
 
-This gem continues the great work done by Danandrews in [`omniauth-okta`](https://github.com/dandrews/omniauth-okta).
+This gem continued the great work done by Danandrews in [`omniauth-okta`](https://github.com/dandrews/omniauth-okta).  But honestly their gem is more updated so please use that one.  Also not an official sdk from Okta.
 
 This newer version now supports options for Okta's API Access Management and Custom Oauth Tokens and URLs. 
 
