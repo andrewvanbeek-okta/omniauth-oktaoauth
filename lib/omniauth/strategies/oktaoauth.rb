@@ -48,6 +48,13 @@ module OmniAuth
 
       alias :oauth2_access_token :access_token
 
+      def authorize_params
+        params = super
+        params[:nonce] = SecureRandom.hex(24)
+        session["omniauth.nonce"] = params[:nonce]
+        params
+      end
+
       def access_token
         ::OAuth2::AccessToken.new(client, oauth2_access_token.token, {
           :expires_in => oauth2_access_token.expires_in,
@@ -73,7 +80,11 @@ module OmniAuth
       end
 
       def callback_phase
-        super
+        return_value = super
+        unless validated_token(oauth2_access_token.params["id_token"])["nonce"] == session["omniauth.nonce"]
+          fail!(:invalid_nonce)
+        end
+        return_value
       end
 
       def callback_url
